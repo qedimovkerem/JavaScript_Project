@@ -1,35 +1,37 @@
 document.addEventListener("DOMContentLoaded",()=>{
   let products=[];
-//   let users=JSON.parse(localStorage.getItem("users")) ||[];
-//   let currentUser=users.find((user)=>user.islogined==true);
-//   let login=document.querySelector(".login");
-//   let register=document.querySelector(".register");
-//   let logout=document.querySelector(".logout");
-//   let parametr=document.querySelector(".parametr")
-//   if (currentUser) {
-//     let userIde=users.findIndex((user)=>user.id==currentUser.id);
-//     let basket =currentUser.basket
-//       login.classList.add("d-none");
-//       register.classList.add("d-none");
-//       logout.classList.remove("d-none");
-//       parametr.classList.remove("d-none")
-//   }else{
-//       login.classList.remove("d-none");
-//       register.classList.remove("d-none");
-//       logout.classList.add("d-none");
-//       parametr.classList.add("d-none")
-//   }
+  let users=JSON.parse(localStorage.getItem("users")) ||[];
+  let currentUser=users.find((user)=>user.islogined==true);
+  let wrapper =document.querySelector(".username")
+  let login=document.querySelector(".login");
+  let register=document.querySelector(".register");
+  let logout=document.querySelector(".logout");
+  let parametr=document.querySelector(".parametr")
+  if (currentUser) {
+    let userIde=users.findIndex((user)=>user.id==currentUser.id);
+    let basket =currentUser.basket
+    wrapper.textContent=`${currentUser.name}`
+      login.classList.add("d-none");
+      register.classList.add("d-none");
+      logout.classList.remove("d-none");
+      parametr.classList.remove("d-none")
+  }else{
+      login.classList.remove("d-none");
+      register.classList.remove("d-none");
+      logout.classList.add("d-none");
+      parametr.classList.add("d-none")
+  }
 
 
-//   let logoutUser=()=>{
-//     toast("cixis olunur")
-//     setTimeout(()=>{
-//       currentUser.islogined=false;
-//     localStorage.setItem("users",JSON.stringify(users))
-//     window.location.reload()
-//     },2000)
-// }
-// logout.addEventListener("click",logoutUser);
+  let logoutUser=()=>{
+    toast("cixis olunur")
+    setTimeout(()=>{
+      currentUser.islogined=false;
+    localStorage.setItem("users",JSON.stringify(users))
+    window.location.reload()
+    },2000)
+}
+logout.addEventListener("click",logoutUser);
 
 function createUser(){
      axios.get('http://localhost:3000/products')
@@ -105,3 +107,15 @@ function createUser(){
 createUser()
 
 })
+
+let toast=(text)=>{
+    Toastify({
+        text: `${text}`,
+        duration: 2000,
+        position: "right", 
+        style: {
+          background: "linear-gradient(to right, #00b09b, #96c93d)",
+        },
+        onClick: function(){}
+      }).showToast();
+}

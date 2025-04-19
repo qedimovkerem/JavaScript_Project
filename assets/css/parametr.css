@@ -1,0 +1,76 @@
+*{
+    margin:0 auto;
+    padding: 0%;
+    box-sizing: border-box;
+}
+.register{
+    width: 502px;
+    height: 600px;
+    border: 1px solid black;
+    border-radius: 8px;
+    background-color: rgb(173, 172, 172);
+    margin-top: 60px;
+}
+.cards-titles{
+   text-align: center;
+}
+h2{
+    font-size: 32px;
+}
+.register_cards-title{
+    font-size: 16px;
+    color: rgba(0, 0, 0, 0.75);
+}
+.form-control{
+    width: 400px;
+    margin: auto;
+}
+.form-label{
+    margin-left: 40px;
+    color: rgba(0, 0, 0, 1);
+}
+.submit{
+    width: 360px;
+    height: 52px;
+    background-color: rgba(247, 81, 69, 1);
+    color: #fff;
+    margin-left: 60px;
+}
+.submit:hover{
+    background-color: transparent;
+    border: 1px solid #fff;
+}
+p{
+    margin-left: 40px;
+}
+.password_check{
+    width: 20px;
+    height: 25px;
+    position: absolute;
+    top:40px;
+    right: 40px;
+    text-align: center;
+  }
+  .pasword{
+    position: relative;
+  }
+
+
+  @media (max-width:576px){
+    .register{
+        width: 310px;
+    }
+    .form-control{
+        width: 280px;
+    }
+    .form-label{
+        margin-left: 0px;
+    }
+    .submit{
+        width: 280px;
+        margin: auto;
+    }
+    p{
+        margin: auto;
+    }
+  }
