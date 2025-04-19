@@ -5,21 +5,19 @@
 }
 .register{
     width: 502px;
-    height: 600px;
+    height: 450px;
     border: 1px solid black;
     border-radius: 8px;
     background-color: rgb(173, 172, 172);
     margin-top: 60px;
+    padding-top: 20px;
 }
 .cards-titles{
    text-align: center;
+   padding-bottom: 30px;
 }
 h2{
     font-size: 32px;
-}
-.register_cards-title{
-    font-size: 16px;
-    color: rgba(0, 0, 0, 0.75);
 }
 .form-control{
     width: 400px;
@@ -43,34 +41,3 @@ h2{
 p{
     margin-left: 40px;
 }
-.password_check{
-    width: 20px;
-    height: 25px;
-    position: absolute;
-    top:40px;
-    right: 40px;
-    text-align: center;
-  }
-  .pasword{
-    position: relative;
-  }
-
-
-  @media (max-width:576px){
-    .register{
-        width: 310px;
-    }
-    .form-control{
-        width: 280px;
-    }
-    .form-label{
-        margin-left: 0px;
-    }
-    .submit{
-        width: 280px;
-        margin: auto;
-    }
-    p{
-        margin: auto;
-    }
-  }
