@@ -37,6 +37,7 @@ function createUser(){
      axios.get('http://localhost:3000/products')
      .then(res=>{
         const product=res.data
+        products=product
         console.log(product);
         
 
@@ -53,6 +54,16 @@ function createUser(){
         cardsIcon.classList.add("cards-icon")
         let cardsHeart=document.createElement("i")
         cardsHeart.classList.add("fa-regular","fa-heart")
+        if (currentUser && currentUser.wishlist.some(item => item.id === element.id)) {
+          cardsHeart.classList.add("fa-solid");
+          cardsHeart.style.color = "#ff9800";
+      } else {
+          cardsHeart.classList.add("fa-regular");
+      }
+        cardsHeart.addEventListener("click" ,(e)=>{
+          e.stopPropagation(),
+            toogleUserWishLish(element.id,cardsHeart)
+        })
         let cardsImages=document.createElement("div")
         cardsImages.classList.add("cards-images")
         let image=document.createElement("img")
@@ -105,7 +116,33 @@ function createUser(){
 
 }
 createUser()
-
+function toogleUserWishLish(productId,cardsHeart){
+  let userIde=users.findIndex((user)=>user.id==currentUser.id);
+  if (!currentUser) {
+      toast("Qeydiyyaddan kecin");
+      setTimeout(()=>{
+          window.location.href="login.html"
+      },2000)
+  }
+  let currentProduct =currentUser.wishlist.some((item)=>item.id ===productId);
+  if (currentProduct) {
+      let currentProductIndex=currentUser.wishlist.findIndex((product)=>product.id==productId);
+      currentUser.wishlist.splice(currentProductIndex,1);
+      users[userIde].wishlist=currentUser.wishlist
+      localStorage.setItem("users",JSON.stringify(users));
+      cardsHeart.classList.add("fa-regular");
+      cardsHeart.classList.remove("fa-solid");
+      toast("product silindi");
+  }else{
+      let addProduct=products.find((product)=>product.id==productId);
+      currentUser.wishlist.push(addProduct);
+      localStorage.setItem("users",JSON.stringify(users));
+      toast("product elave olundu");
+      cardsHeart.classList.remove("fa-regular");
+      cardsHeart.classList.add("fa-solid");
+      cardsHeart.style.color="#ff9800"
+  }
+}
 })
 
 let toast=(text)=>{
