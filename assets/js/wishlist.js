@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded",()=>{
+    let products=[];
     let users =JSON.parse(localStorage.getItem("users"))||[];
     let wrapper =document.querySelector(".username")
     let currentUser=users.find((user)=>user.islogined==true);
@@ -7,6 +8,7 @@ document.addEventListener("DOMContentLoaded",()=>{
     let register=document.querySelector(".register");
     let logout=document.querySelector(".logout");
     let parametr=document.querySelector(".parametr")
+    let userIde=users.findIndex((user)=>user.id==currentUser.id);
     if (currentUser) {
         let userIde=users.findIndex((user)=>user.id==currentUser.id);
         let basket =currentUser.basket
@@ -30,16 +32,32 @@ document.addEventListener("DOMContentLoaded",()=>{
     }
     let userWishlist=currentUser.wishlist
 
-    let logoutUser=()=>{
-        toast("cixis olunur")
-        setTimeout(()=>{
-          currentUser.islogined=false;
-        localStorage.setItem("users",JSON.stringify(users))
-        window.location.reload()
-        },2000)
-    }
-    logout.addEventListener("click",logoutUser);
+    let clickWishlist=()=>{
+        window.location.href="wishlist.html";
+      };
+      
+      let clickBasket=()=>{
+        window.location.href="basket.html"
+      }
 
+      
+        let logoutUser=()=>{
+          toast("cixis olunur")
+          setTimeout(()=>{
+            currentUser.islogined=false;
+          localStorage.setItem("users",JSON.stringify(users))
+          window.location.reload()
+          },2000)
+      };
+      logout.addEventListener("click",logoutUser);
+      
+      let navListIcon=document.querySelector(".nav_list-li1");
+      navListIcon.style.cursor="pointer"
+      navListIcon.addEventListener("click",clickWishlist);
+      
+      let navListIcon2=document.querySelector(".nav_list-li2");
+      navListIcon2.style.cursor="pointer"
+      navListIcon2.addEventListener("click",clickBasket);
     function createWishlistItem(product) {
     //        axios.get("http://localhost:3000/products")
     //            .then(res=>{
@@ -100,6 +118,10 @@ document.addEventListener("DOMContentLoaded",()=>{
             let btn =document.createElement("button")
             btn.classList.add("cards-button")
             btn.textContent="add to card"
+            btn.addEventListener("click",(e)=> {
+                e.stopPropagation(),
+              addbasket(element.id ,products)
+            }) 
     
             cardPrice.append(price,beforePrice)
             cardsIcons.append(cardsStar,cardsStar1,cardsStar2,cardsStar3,cardsStar4)
@@ -110,9 +132,25 @@ document.addEventListener("DOMContentLoaded",()=>{
             card.appendChild(container)
             let cards=document.querySelector(".cards")
             cards.appendChild(card)
+            let allRemoveBtn=document.querySelector(".remove-all")
+            allRemoveBtn.addEventListener("click",allRemoveProduct)
+            
         });
     //  })
     }
+    function allRemoveProduct(){
+        if (!currentUser.wishlist || currentUser.wishlist.length === 0){
+            toast("Wishlist bosdur")
+            return
+        }
+        currentUser.wishlist=[]
+        users[userIde].wishlist=[];
+        localStorage.setItem("users",JSON.stringify(users));
+        let cardsContainer = document.querySelector(".cards");
+            cardsContainer.innerHTML = "";
+            toast("Butun productlar silindi");
+    }
+
 
     function removeProduct(productId) {
         let userIndex =users.findIndex((user)=>user.id==currentUser.id);
@@ -129,6 +167,35 @@ document.addEventListener("DOMContentLoaded",()=>{
             toast("product silindi")
         }
     }
+    function addbasket(productId,products) {
+        let userIde=users.findIndex((user)=>user.id==currentUser.id);
+        if (!currentUser) {
+          toast("Qeydiyyaddan kecin");
+          setTimeout(()=>{
+              window.location.href="login.html"
+          },2000)}
+          let basket =currentUser.basket
+       let findProductIndex=currentUser.basket.findIndex((product)=>product.id==productId);
+       let exsistProduct=basket.find((elem)=>elem.id==productId)
+       if (!exsistProduct) {
+        let product =products.find((item)=>item.id ==productId)
+        basket.push({...product,count:1});
+       }else{
+        exsistProduct.count++;
+       }
+       toast("mehsul baskete elave olundu");
+       users[userIde].basket=currentUser.basket;
+       localStorage.setItem("users",JSON.stringify(users));
+       basketCount()
+      }
+      
+      
+      function basketCount() {
+        let result=currentUser.basket.reduce((acc,product)=>acc+product.count,0);
+        let countIcon=document.querySelector(".nav_list-li2 sup");
+        countIcon.textContent=result
+      }
+      basketCount()
     createWishlistItem()
 });
 

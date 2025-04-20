@@ -247,7 +247,7 @@ cards_area-title2{
    .logo{
     font-size: 36px;
    }
-   .nav_list-icons{
+   .nav_list-icons,.nav_list-icons{
     font-size: 15px;
    }
    .nav-button{
@@ -302,7 +302,7 @@ cards_area-title2{
     font-size: 15px;
    }
    .nav-list{
-    gap: 10px;
+    gap: 8px;
    }
    .nav_list-icons{
     font-size: 8px;
@@ -313,7 +313,10 @@ cards_area-title2{
     width: 15px;
     padding: 0%;
    }
-   .nav_list-li{
+   .nav_list-li1,.nav_list-li2,.nav_list-li{
+    font-size: 8px;
+   }
+   a{
     font-size: 8px;
    }
    .nav_search-icons{

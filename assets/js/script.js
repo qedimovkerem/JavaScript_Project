@@ -22,6 +22,13 @@ document.addEventListener("DOMContentLoaded",()=>{
       parametr.classList.add("d-none")
   }
 
+let clickWishlist=()=>{
+  window.location.href="wishlist.html";
+};
+
+let clickBasket=()=>{
+  window.location.href="basket.html"
+}
 
   let logoutUser=()=>{
     toast("cixis olunur")
@@ -30,8 +37,16 @@ document.addEventListener("DOMContentLoaded",()=>{
     localStorage.setItem("users",JSON.stringify(users))
     window.location.reload()
     },2000)
-}
+};
 logout.addEventListener("click",logoutUser);
+
+let navListIcon=document.querySelector(".nav_list-li1");
+navListIcon.style.cursor="pointer"
+navListIcon.addEventListener("click",clickWishlist);
+
+let navListIcon2=document.querySelector(".nav_list-li2");
+navListIcon2.style.cursor="pointer"
+navListIcon2.addEventListener("click",clickBasket);
 
 function createUser(){
      axios.get('http://localhost:3000/products')
@@ -101,6 +116,10 @@ function createUser(){
         let btn =document.createElement("button")
         btn.classList.add("cards-button")
         btn.textContent="add to card"
+        btn.addEventListener("click",(e)=> {
+          e.stopPropagation(),
+        addbasket(element.id ,products)
+      }) 
 
         cardPrice.append(price,beforePrice)
         cardsIcons.append(cardsStar,cardsStar1,cardsStar2,cardsStar3,cardsStar4)
@@ -115,7 +134,6 @@ function createUser(){
     });
 
 }
-createUser()
 function toogleUserWishLish(productId,cardsHeart){
   let userIde=users.findIndex((user)=>user.id==currentUser.id);
   if (!currentUser) {
@@ -143,7 +161,38 @@ function toogleUserWishLish(productId,cardsHeart){
       cardsHeart.style.color="#ff9800"
   }
 }
-})
+function addbasket(productId,products) {
+  let userIde=users.findIndex((user)=>user.id==currentUser.id);
+  if (!currentUser) {
+    toast("Qeydiyyaddan kecin");
+    setTimeout(()=>{
+        window.location.href="login.html"
+    },2000)}
+    let basket =currentUser.basket
+ let findProductIndex=currentUser.basket.findIndex((product)=>product.id==productId);
+ let exsistProduct=basket.find((elem)=>elem.id==productId)
+ if (!exsistProduct) {
+  let product =products.find((item)=>item.id ==productId)
+  basket.push({...product,count:1});
+ }else{
+  exsistProduct.count++;
+ }
+ toast("mehsul baskete elave olundu");
+ users[userIde].basket=currentUser.basket;
+ localStorage.setItem("users",JSON.stringify(users));
+ basketCount()
+}
+
+
+function basketCount() {
+  let result=currentUser.basket.reduce((acc,product)=>acc+product.count,0);
+  let countIcon=document.querySelector(".nav_list-li2 sup");
+  countIcon.textContent=result
+}
+basketCount()
+createUser()
+});
+
 
 let toast=(text)=>{
     Toastify({
