@@ -81,7 +81,7 @@ document.addEventListener("DOMContentLoaded",()=>{
         cardTitle.textContent=`${element.title.slice(0,50)}`
         let cardPrice=document.createElement("div")
         cardPrice.classList.add("cards-price")
-        cardPrice.textContent=`${element.price}`
+        cardPrice.textContent=`$${(element.price * element.count).toFixed(2)}`
         let cardSizes=document.createElement("div")
         cardSizes.classList.add("cards-sizes")
         let size=document.createElement("span")
