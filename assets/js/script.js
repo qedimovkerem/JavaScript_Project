@@ -60,6 +60,11 @@ function createUser(){
     product.forEach(element => {
         let card=document.createElement("div")
         card.classList.add("card")
+        card.style.cursor="pointer"
+            card.addEventListener("click",()=>{
+              window.location.href=`product_detail.html?id=${element.id}`
+              
+            })
         let container=document.createElement("div")
         container.classList.add("container")
         let newButton=document.createElement("div")

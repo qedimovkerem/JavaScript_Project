@@ -1,0 +1,285 @@
+*{
+    margin: 0px;
+    padding: 0%;
+    box-sizing: border-box;
+}
+a{
+    text-decoration: none;
+    color: rgba(46,46,66,1);
+}
+.navbar-area{
+    display: flex;
+    justify-content: space-between;
+}
+.nav-list{
+    display: flex;
+    gap: 20px;
+}
+.nav-input{
+    border: 0px;
+    outline: 0px;
+    background-color: #f7f9fc;
+    width: 420px;
+}
+.nav-search{
+    width: 450px;
+    height: 48px;
+    padding: 0px 15px;
+    border-radius: 10px;
+    background-color: #f7f9fc;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: rgba(39,49,66,0.75);
+}
+.logo{
+    font-weight: bold;
+    font-size: 40px;
+}
+.nav_list-li{
+    color: rgba(46,46,66,1);
+}
+.nav_list-icons{
+    font-size: 20px;
+}
+
+.nav-button{
+    display: none;
+    background-color: #f7f9fc;
+    padding-bottom: 10px;
+}
+#header{
+    height: 80px;
+    padding: 10px;
+}
+.username{
+    background-color: transparent;
+    border: 1px soldi black;
+    padding: 2px;
+}
+/*  header finish */
+.aside-image{
+    width: 72px;
+    height: 94px;
+    border: 1px solid rgba(32, 99, 99, 1);
+    margin: 10px 0px;
+}
+.cards{
+    display: flex;
+    gap: 20px;
+}
+.card{
+    background-color: rgba(249, 249, 249, 1);
+    position: relative;
+}
+.image{
+    width: 456px;
+    height: 473px;
+    margin: auto 10px;
+}
+.new{
+    width: 79px;
+    height: 32px;
+    background-color:rgba(223, 66, 68, 1);
+    position: absolute;
+    color: #fff;
+    text-align: center;
+    top: 10px;
+}
+.cards-heart{
+    position: absolute;
+    right:20px;
+    top: 10px;
+}
+.card-content{
+    width: 500px;
+}
+.cards-buttons{
+    margin-top: 15px;
+}
+.card-buttons{
+   display: flex;
+   flex-wrap: wrap;
+   gap: 5px;
+   margin-top: 10px;
+}
+.card-btn{
+    width: 224px;
+    height: 40px;
+    background-color: transparent;
+}
+.card-footer{
+    display: flex;
+    gap: 180px;
+    margin-top: 20px;
+}
+.sizes-btn{
+    width: 64px;
+    height: 40px;
+    background-color: transparent;
+}
+.colors1{
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: rgba(205, 92, 11, 1);
+}
+.colors2{
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: rgba(0, 133, 255, 1);
+}
+.colors3{
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: rgba(53, 120, 59, 1);
+}
+.colors4{
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: rgba(237, 8, 117, 1);
+}
+.color-areas{
+    display: flex;
+    margin-top: 20px ;
+}
+.submit-btn{
+    margin-top: 40px;
+}
+.aside-tag{
+    display: flex;
+    gap: 10px;
+
+}
+.cards-area{
+    margin-top: 20px;
+}
+img{
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+#description{
+    margin-top: 40px;
+}
+
+
+
+
+
+
+@media (max-width:1024px) and (min-width:992px){
+    .nav-search{
+       width: 300px;
+    }
+    .nav-input{
+       width: 200px;
+    }
+    .navbar-area{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      justify-content: space-between;
+    }
+    .logo{
+       font-size: 30px;
+    }
+    .nav_list-icons{
+       font-size: 15px;
+    }
+    /* header finish */
+}
+@media (max-width:992px) and (min-width:768px){
+   .card{
+       width: 300px;
+       margin: auto;
+   }
+   .cards-images{
+       margin-left: 20px;
+   }
+   .cards-button{
+       width: 250px;
+   }
+   .nav-input{
+       width: 170px;
+    }
+   .nav-search{
+       width: 200px;
+   }
+}
+@media (max-width:768px) and (min-width:576px){
+  .nav-search{
+   display: none;
+  }
+  .navbar-area{
+   display: flex;
+   justify-content: space-between;
+  }
+  .logo{
+   font-size: 36px;
+  }
+  .nav_list-icons,.nav_list-icons{
+   font-size: 15px;
+  }
+  .nav-button{
+   display: block;
+  }
+  .username{
+   padding: 0%;
+}
+.image{
+    width: 250px;
+}
+}
+@media (max-width:576px){
+  .nav-search{
+   display: none;
+  }
+  .navbar-area{
+   display: flex;
+   justify-content: space-between;
+   gap: 10px;
+  }
+  .logo{
+   font-size: 15px;
+  }
+  .nav-list{
+   gap: 8px;
+  }
+  .nav_list-icons{
+   font-size: 8px;
+  }
+  .nav-button{
+   display: block;
+   height: 25px;
+   width: 15px;
+   padding: 0%;
+  }
+  .nav_list-li1,.nav_list-li2,.nav_list-li{
+   font-size: 8px;
+  }
+  a{
+   font-size: 8px;
+  }
+  .nav_search-icons{
+   font-size: 8px;
+  }
+  #header{
+   height: 60px;
+  }
+  .username{
+   padding: 0%;
+   font-size: 10px;
+}
+.image{
+    width: 200px;
+    height: 400px;
+}
+.cards-area{
+    display: flex;
+    flex-direction: column;
+}
+}
